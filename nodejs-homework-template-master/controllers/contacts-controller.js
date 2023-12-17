@@ -36,7 +36,7 @@ const add = async (req, res, next) => {
         if (error) {
             throw HttpError(400, "missing required fields");
         }
-         const { name, email, phone } = req.body; // Деструктуризація об'єкта
+         const { name, email, phone } = req.body;
 
         const result = await contactService.addContact({ name, email, phone });
         res.status(201).json(result)
