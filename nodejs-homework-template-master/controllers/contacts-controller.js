@@ -36,8 +36,9 @@ const add = async (req, res, next) => {
         if (error) {
             throw HttpError(400, "missing required fields");
         }
-        const result = await contactService.addContact(req.body);
+         const { name, email, phone } = req.body; // Деструктуризація об'єкта
 
+        const result = await contactService.addContact({ name, email, phone });
         res.status(201).json(result)
     }
     catch (error) {
@@ -52,7 +53,7 @@ const updateById = async (req, res, next) => {
             throw HttpError(400, "missing fields");
         }
         const { id } = req.params;
-        const result = await contactService.updateById(id, req.body);
+        const result = await contactService.updateContactById(id, req.body);
         if (!result) {
             throw HttpError(404, `Not found`);
         }
