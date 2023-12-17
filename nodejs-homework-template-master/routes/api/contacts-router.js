@@ -5,12 +5,12 @@ const contactsRouter = express.Router()
 
 contactsRouter.get('/', contactsController.getAll);
 
-contactsRouter.get('/:contactId', contactsController.getById);
+contactsRouter.get('/:id', contactsController.getById);
 
 contactsRouter.post('/', isEmptyBody, contactsController.add);
 
-contactsRouter.delete('/:contactId', contactsController.deleteById);
+contactsRouter.delete('/:id', contactsController.deleteById);
 
-contactsRouter.put('/:contactId', isEmptyBody, contactsController.updateById);
+contactsRouter.put('/:id', isEmptyBody, contactsController.updateById);
 
 export default contactsRouter;

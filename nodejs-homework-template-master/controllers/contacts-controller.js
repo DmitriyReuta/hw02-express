@@ -17,7 +17,7 @@ const getAll = async (req, res, next) => {
 
 const getById = async (req, res, next) => {
     try {
-        console.log(req.params);
+        const { id } = req.params;
         const result = await contactService.getContactById(id);
         if (!result) {
             throw HttpError(404, `Not found`);
@@ -34,7 +34,7 @@ const add = async (req, res, next) => {
     try {
         const { error } = contactAddSchema.validate(req.body);
         if (error) {
-            throw HttpError(400, "missing required name field");
+            throw HttpError(400, "missing required fields");
         }
         const result = await contactService.addContact(req.body);
 
