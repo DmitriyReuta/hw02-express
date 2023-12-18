@@ -34,7 +34,7 @@ const add = async (req, res, next) => {
     try {
         const { error } = contactAddSchema.validate(req.body);
         if (error) {
-            throw HttpError(400, "missing required fields");
+            throw HttpError(400, error);
         }
          const { name, email, phone } = req.body;
 
@@ -50,7 +50,7 @@ const updateById = async (req, res, next) => {
     try {
         const { error } = contactUpdateSchema.validate(req.body);
         if (error) {
-            throw HttpError(400, "missing fields");
+            throw HttpError(400, error);
         }
         const { id } = req.params;
         const result = await contactService.updateContactById(id, req.body);
